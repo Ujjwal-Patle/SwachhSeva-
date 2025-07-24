@@ -48,8 +48,8 @@ public class User implements UserDetails {
 	    @Email@Column(unique = true, nullable = false)
 	    protected String email;
 
-	    @Pattern(regexp = "((?=.\\d)(?=.[a-z])(?=.[A-Z])(?=.[#@$*]).{5,20})", message = "Invalid password format!!!!")
-	    protected String password;
+	    
+	    	protected String password;
 	    
 	    @Column(length = 20)
 	    private String status; 
