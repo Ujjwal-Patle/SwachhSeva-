@@ -30,8 +30,6 @@ import lombok.Setter;
 
 public class User implements UserDetails {
 
-	   
-
 		@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    protected Long id;
@@ -48,7 +46,7 @@ public class User implements UserDetails {
 	    @Email@Column(unique = true, nullable = false)
 	    protected String email;
 
-	    @Pattern(regexp = "((?=.\\d)(?=.[a-z])(?=.[A-Z])(?=.[#@$*]).{5,20})", message = "Invalid password format!!!!")
+	    @Pattern(regexp = "((?=.\\d)(?=.[a-z])(?=.[A-Z])(?=.[#@$*]).{5,20})", message = "Invalid password format!!!!")
 	    protected String password;
 	    
 	    @Column(length = 20)
@@ -73,13 +71,12 @@ public class User implements UserDetails {
 		
 		@Override
 		public Collection<? extends GrantedAuthority> getAuthorities() {
-			// TODO Auto-generated method stub
+			
 			return List.of(new SimpleGrantedAuthority(this.role.name()));
 		}
 
 		@Override
 		public String getUsername() {
-			// TODO Auto-generated method stub
 			return email;
 		}
 
