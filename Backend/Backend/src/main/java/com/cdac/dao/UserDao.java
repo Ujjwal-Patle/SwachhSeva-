@@ -14,4 +14,6 @@ public interface UserDao extends JpaRepository<User, Long> {
     
     // Optional: login using either email or aadhaar
     Optional<User> findByEmailOrAadhaar(String email, String aadhaar);
+    
+    Boolean existsByEmail(String email);
 }

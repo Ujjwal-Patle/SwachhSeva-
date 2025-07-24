@@ -1,26 +1,29 @@
 package com.cdac.DTO;
 
-import java.time.LocalDate;
-
 import com.cdac.entities.UserRole;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
+public class UserDTO {
 
-public class UserDTO{
-	
-	private String firstName;
-	
-	private String lastName;
-	
-	private String email;
-	
-	private String password;
-	
-	private LocalDate dob;
-	
-	private UserRole role;
+	  
+		
+			protected String name;
+		    private String aadhaar;
+            private String mobile;
+            protected String email;
+            @NotBlank
+            @Pattern(
+                regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[#@$*]).{5,20}$",
+                message = "Password must be 5-20 characters long and include uppercase, lowercase, digit, and special character (#@$*)"
+            )
+            private String password;
+            
+            private UserRole role;
 }
+//For SignUp 
