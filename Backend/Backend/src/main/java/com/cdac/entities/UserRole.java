@@ -1,0 +1,8 @@
+package com.cdac.entities;
+
+public enum UserRole {
+    REPORTER,
+    VOLUNTEER,
+    SUPERVISOR,
+    MANAGER
+}
