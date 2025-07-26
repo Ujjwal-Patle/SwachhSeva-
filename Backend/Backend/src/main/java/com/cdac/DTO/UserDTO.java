@@ -1,8 +1,13 @@
 package com.cdac.DTO;
 
+import java.time.LocalDate;
+
 import com.cdac.entities.UserRole;
+import com.cdac.validation.AgeAbove18;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +28,12 @@ public class UserDTO {
                 message = "Password must be 5-20 characters long and include uppercase, lowercase, digit, and special character (#@$*)"
             )
             private String password;
+            
+
+            @JsonFormat(pattern = "yyyy-MM-dd") 
+            @NotNull
+            @AgeAbove18
+            private LocalDate dateOfBirth; 
             
             private UserRole role;
 }

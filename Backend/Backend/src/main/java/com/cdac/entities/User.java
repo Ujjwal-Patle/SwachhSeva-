@@ -1,7 +1,9 @@
 package com.cdac.entities;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -9,15 +11,16 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.cdac.validation.AgeAbove18;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,9 +37,9 @@ public class User implements UserDetails {
 
 		@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    protected Long id;
+		private Long id;
 		
-		protected String name;
+		private String name;
 		
 		@Column(unique = true, length = 20)
 	    private String aadhaar;
@@ -46,10 +49,10 @@ public class User implements UserDetails {
 
 		
 	    @Email@Column(unique = true, nullable = false)
-	    protected String email;
+	    private String email;
 
-	    
-	    	protected String password;
+	   
+	    private String password;
 	    
 	    @Column(length = 20)
 	    private String status; 
@@ -57,11 +60,15 @@ public class User implements UserDetails {
 	    @Column(name = "created_at")
 	    private LocalDateTime createdAt;
 
-	 // to store enum constants
-		@Enumerated(EnumType.STRING)
+	 
 		@Column(name = "user_role")
 		private UserRole role;
 		
+		@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	    private List<Complaint> complaints = new ArrayList<>();
+		
+		
+	    private LocalDate dateOfBirth;
 
 	    public User(String email, String password, UserRole role) {
 		super();
