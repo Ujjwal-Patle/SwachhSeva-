@@ -13,10 +13,11 @@ public interface UserService {
 
 	SignInResponseDTO authenticateUser(SignInDTO dto);
 
-	
 
 	ApiResponse updateUser(Long userID, UserDTO dto);
 
 	ApiResponse deleteUser( Long userID);
+
+    Object getUserById(Long userId);
 
 }

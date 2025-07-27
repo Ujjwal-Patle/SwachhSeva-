@@ -55,7 +55,16 @@ public class UserController {
 		System.out.println("in user sign in "+dto);
 		SignInResponseDTO response = userService.authenticateUser(dto);
 	    return ResponseEntity.ok(response);
+	}	
+
+
+	@GetMapping("/{userId}")
+	@Operation(description = "Get user by ID")
+	public ResponseEntity<?> getUserById(@PathVariable Long userId) {
+		return ResponseEntity.ok(userService.getUserById(userId));
 	}
-	
-	
+
+
+
+
 }

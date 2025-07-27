@@ -126,4 +126,11 @@ public  class UserServiceImpl implements UserService {
 				
 	}
 
+	@Override
+	public Object getUserById(Long userId) {
+		User user = userDao.findById(userId)
+				.orElseThrow(() -> new ResourceNotFoundException("Invalid user id !!!!!"));
+		return user;
+	}
+
 }

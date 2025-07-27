@@ -49,8 +49,8 @@ public class User implements UserDetails {
 	    @Pattern(regexp = "((?=.\\d)(?=.[a-z])(?=.[A-Z])(?=.[#@$*]).{5,20})", message = "Invalid password format!!!!")
 	    protected String password;
 	    
-	    @Column(length = 20)
-	    private String status; 
+	    // @Column(length = 20)
+	    // private String status; 
 
 	    @Column(name = "created_at")
 	    private LocalDateTime createdAt;
