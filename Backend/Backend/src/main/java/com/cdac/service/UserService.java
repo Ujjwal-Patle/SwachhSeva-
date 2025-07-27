@@ -12,8 +12,7 @@ public interface UserService {
 	String addUserDetails(UserDTO adddto);
 
 	SignInResponseDTO authenticateUser(SignInDTO dto);
-
-
+ 
 	ApiResponse updateUser(Long userID, UserDTO dto);
 
 	ApiResponse deleteUser( Long userID);

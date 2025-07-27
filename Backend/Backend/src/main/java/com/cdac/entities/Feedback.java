@@ -23,12 +23,14 @@ public class Feedback {
     private Complaint complaint;
 
     // Reporter (who gave the feedback)
-    @Column(name = "reporter_id")
-    private Long reporterId; // You can also make this a User entity
+    @ManyToOne
+    @JoinColumn(name = "reporter_id")
+    private User reporter;
 
     // Volunteer (who resolved the complaint)
-    @Column(name = "volunteer_id")
-    private Long volunteerId; // Optional: can also be a User relation
+    @ManyToOne
+    @JoinColumn(name = "volunteer_id")
+    private User volunteer; 
 
     private Integer rating; // Expected range: 1 to 5
 
@@ -38,6 +40,11 @@ public class Feedback {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
+    
+
+    
+
+    
   
 }
 
