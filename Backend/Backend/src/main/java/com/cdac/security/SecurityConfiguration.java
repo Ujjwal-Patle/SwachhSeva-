@@ -49,14 +49,10 @@ public class SecurityConfiguration {
 		// add URL based authorization rules
 		// un protected end points - swagger , view products
 		http.authorizeHttpRequests(request -> request
-				.requestMatchers("/v*/api-docs/**", "/swagger-ui/**", "/products/view", "/user/signup",
-						"/user/signin")
+				.requestMatchers("/v*/api-docs/**", "/swagger-ui/**", "/user/signup",
+						"/user/signin","/api/complaint")
 				.permitAll()
-				// only admin should be allowed to add product
-				.requestMatchers("/user/*").hasRole("ADMIN")
-				// only customer can purchase the product
-				.requestMatchers("/events/*", "/notifications/*").hasRole("USER")
-				// any other request - can accessed only by authenticated users
+				
 				.anyRequest().authenticated())
 				// tell Spring sec - not to create any HttpSession object
 				// to store spring security info
@@ -72,9 +68,10 @@ public class SecurityConfiguration {
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowedOrigins(List.of("http://localhost:5173")); // your frontend URL
+		config.setAllowedOrigins(List.of("*")); // your frontend URL
 		config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-		config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+//		config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+		config.setAllowedHeaders(List.of("*"));
 		config.setAllowCredentials(true); // If using cookies or Authorization headers
 
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

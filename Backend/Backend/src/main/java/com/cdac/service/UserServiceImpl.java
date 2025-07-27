@@ -47,9 +47,7 @@ public  class UserServiceImpl implements UserService {
 		  if(userDao.existsByEmail(adddto.getEmail())) {
 					throw new ApiException("Duplicate email id");
 				}
-				
-				 
-				
+			
 				User user = modelMapper.map(adddto, User.class);
 
 			    // Encode the password here
@@ -94,8 +92,6 @@ public  class UserServiceImpl implements UserService {
 			        
 			        response.setToken(token);
 			        
-			    
-
 			    return response;
 		
 	}
