@@ -53,7 +53,10 @@ public class UserController {
 		System.out.println("in user sign in "+dto);
 		SignInResponseDTO response = userService.authenticateUser(dto);
 	    return ResponseEntity.ok(response);
-	}
+	}	
+
+
+
 	
 	@GetMapping("/{id}")
 	@PreAuthorize("hasAnyRole('ROLE_MANAGER', 'ROLE_SUPERVISOR', 'ROLE_REPORTER', 'ROLE_VOLUNTEER')")
@@ -65,6 +68,4 @@ public class UserController {
 	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 	    }
 	}
-	
-	
 }

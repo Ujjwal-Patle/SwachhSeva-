@@ -19,6 +19,7 @@ import com.cdac.DTO.ComplaintRequestDTO;
 import com.cdac.dao.ComplaintDao;
 import com.cdac.dao.UserDao;
 import com.cdac.entities.Complaint;
+import com.cdac.entities.ComplaintStatus;
 import com.cdac.entities.User;
 
 
@@ -52,7 +53,7 @@ public class ComplaintService {
 	        // Set remaining fields manually
 	        complaint.setReporter(reporter);
 	        complaint.setImageUrl(filePath.toString());
-	        complaint.setStatus("PENDING");
+	        complaint.setStatus(ComplaintStatus.PENDING);
 	        complaint.setToken(UUID.randomUUID().toString().substring(0, 8).toUpperCase());
 	        complaint.setCreatedAt(LocalDateTime.now());
 	        complaint.setUpdatedAt(LocalDateTime.now());
@@ -90,22 +91,18 @@ public class ComplaintService {
 
 	        complaintDao.delete(complaint);
 	    }
-	 
-	    public Complaint updateStatus(Long id, String newStatus) {
-	        Complaint complaint = complaintDao.findById(id)
-	                .orElseThrow(() -> new RuntimeException("Complaint not found"));
 
-	        complaint.setStatus(newStatus); // assuming status is a String field in Complaint entity
-	        return complaintDao.save(complaint);
-	    }
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
+
+//
+	public Complaint updateStatus(Long id, ComplaintStatus status) {	
+		Complaint complaint = complaintDao.findById(id)
+	            .orElseThrow(() -> new RuntimeException("Complaint not found with id: " + id));
+
+	    complaint.setStatus(status);
+	    return complaintDao.save(complaint);
+		}
+	 
+ 
 	    
 	}
 

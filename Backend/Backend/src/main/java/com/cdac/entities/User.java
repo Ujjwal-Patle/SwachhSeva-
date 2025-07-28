@@ -33,8 +33,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class User implements UserDetails {
 
-	   
-
 		@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long id;
@@ -86,13 +84,12 @@ public class User implements UserDetails {
 		
 		@Override
 		public Collection<? extends GrantedAuthority> getAuthorities() {
-			// TODO Auto-generated method stub
+			
 			return List.of(new SimpleGrantedAuthority(this.role.name()));
 		}
 
 		@Override
 		public String getUsername() {
-			// TODO Auto-generated method stub
 			return email;
 		}
 
