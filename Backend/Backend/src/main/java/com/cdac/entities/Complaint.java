@@ -41,7 +41,8 @@ public class Complaint {
     @Column(name = "image_url")
     private String imageUrl;
 
-    private String status;  // e.g., "PENDING", "IN_PROGRESS", "RESOLVED"
+    @Enumerated(EnumType.STRING)
+    private ComplaintStatus status = ComplaintStatus.PENDING;   
 
     // Assigned to (another user/volunteer/supervisor)
     @Column(name = "assigned_to")
@@ -49,6 +50,11 @@ public class Complaint {
 
     @Column(unique = true, length = 50)
     private String token;
+    
+    
+    //status checking of complaint 
+    @ManyToOne
+    private User updatedBy;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;

@@ -32,8 +32,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class ComplaintController {
 	
-	@Autowired
-	private ComplaintService complaintService;
+	
+	private final ComplaintService complaintService;
 	
    @PreAuthorize("hasRole('ROLE_REPORTER')")
 	 @PostMapping (consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -69,22 +69,8 @@ public class ComplaintController {
 	     return ResponseEntity.ok(complaints);
 	 }
 	
-	 //for assign complaint to the supervisor
-	@PreAuthorize("hasRole('ROLE_MANAGER')")
-	 @PutMapping("/{id}/assign")
-	 public ResponseEntity<?> assignComplaintToUser(
-	         @PathVariable Long id,
-	         @RequestBody ComplaintAssignmentDTO dto
-	 ) {
-	     try {
-	         Complaint updatedComplaint = complaintService.assignComplaint(id, dto.getAssignedToUserId());
-	         return ResponseEntity.ok(updatedComplaint);
-	     } catch (Exception e) {
-	         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Assignment failed: " + e.getMessage());
-	     }
-	 }
-	 
-	//for updatting status on coplaint only manager ans supervisor can do
+	
+	//for updatting status on complaint only manager ans supervisor can do
 	@PreAuthorize("hasAnyRole('ROLE_SUPERVISOR', 'ROLE_MANAGER')")
 	@PutMapping("/{id}/status")
 	public ResponseEntity<?> updateComplaintStatus(
@@ -110,4 +96,7 @@ public class ComplaintController {
 	         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: " + e.getMessage());
 	     }
 	 }
+	
+	
+	
 }

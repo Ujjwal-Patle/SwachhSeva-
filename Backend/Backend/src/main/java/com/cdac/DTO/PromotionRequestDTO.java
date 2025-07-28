@@ -5,8 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ComplaintAssignmentDTO {
-	    private Long assignedToSupervisorId;
-	}
+public class PromotionRequestDTO {
+	private Long userId; 
 
-
+}

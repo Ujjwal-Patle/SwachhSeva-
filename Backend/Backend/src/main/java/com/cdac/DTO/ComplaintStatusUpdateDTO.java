@@ -1,5 +1,7 @@
 package com.cdac.DTO;
 
+import com.cdac.entities.ComplaintStatus;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ComplaintStatusUpdateDTO {
-	  private String status;
-
+	  private ComplaintStatus status;
+	  private Long updatedBy;
 }
